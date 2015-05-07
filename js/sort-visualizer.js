@@ -66,17 +66,8 @@ var SortVisualizer = (function () {
 
   return {
     setup: setup,
-    drawPath: drawPolygon,
-    drawSort: drawSort,
-    coordsForPath: coordsForPath,
-    getSortPaths: getSortPaths
+    drawSort: drawSort
   }
 
 })();
 
-$(document).ready(function () {
-  SortVisualizer.setup();
-  CardSort.init(52);
-  CardSort.sort();
-  SortVisualizer.drawSort(CardSort.steps());
-})

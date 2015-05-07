@@ -1,15 +1,5 @@
 var CardSort = (function () {
 
-  var m_deckSize = undefined;
-  var m_steps = undefined;
-
-  //////
-
-  var init = function (size) {
-    m_deckSize = size;
-    m_steps = [randomPermutation(m_deckSize)];
-  };
-
   var randomPermutation = function (deckSize) {
     var arr = [];
     for (var i = 0 ; i < deckSize ; i++) {
@@ -29,18 +19,24 @@ var CardSort = (function () {
     return array;
   }
 
-  //////
-
-  var sort = function () {
-    var numSteps = Math.ceil(Math.log(m_deckSize) / Math.log(2));
-    for (var i = 0; i < numSteps; i++) {
-      console.log(i);
-      doStep(i);
+  var reverseSorted = function (deckSize) {
+    var arr = [];
+    for (var i = 0 ; i < deckSize ; i++) {
+      arr[i] = deckSize - 1 - i;
     }
+    return arr;
   }
 
-  var doStep = function(stepNum) {
-    m_steps.push(sortByBit(m_steps[stepNum], stepNum));
+  //////
+
+  var sort = function (initialDeck) {
+    var deckSize = initialDeck.length;
+    var steps = [initialDeck];
+    var numSteps = Math.ceil(Math.log(deckSize) / Math.log(2));
+    for (var i = 0; i < numSteps; i++) {
+      steps.push(sortByBit(steps[i], i));
+    }
+    return steps;
   }
 
   var sortByBit = function (arr, bitNum) {
@@ -61,13 +57,12 @@ var CardSort = (function () {
     return Math.floor(num / Math.pow(2, bitNum)) % 2;
   };
 
-
   //////
 
   return {
-    init: init,
+    randomPermutation: randomPermutation,
+    reverseSorted: reverseSorted,
     sort: sort,
-    steps: function () {return m_steps;}
   };
 
 })();
