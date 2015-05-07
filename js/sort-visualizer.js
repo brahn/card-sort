@@ -4,9 +4,12 @@ var SortVisualizer = (function () {
   var m_width = null;
   var m_height = null;
 
-  var setup = function () {
+  var resetSvg = function () {
     m_width = $("#card-sort").width();
     m_height = $(window).height() - 200;
+    if (m_svg) {
+      m_svg.remove();
+    }
     m_svg = d3.select("div#card-sort")
       .append("svg")
       .attr("width", m_width)
@@ -27,14 +30,13 @@ var SortVisualizer = (function () {
   }
 
   var drawSort = function(sortData) {
+    resetSvg();
     var paths = getSortPaths(sortData);
 
     var elts = paths.length;
     var steps = paths[0].length;
     var xSpacing = m_width / (steps - 1);
     var ySpacing = m_height / (elts - 1);
-
-    m_svg.selectAll("*").remove();
 
     for (var elt = 0; elt < elts; elt++) {
       var coords = coordsForPath(paths[elt], xSpacing, ySpacing);
@@ -67,7 +69,6 @@ var SortVisualizer = (function () {
   };
 
   return {
-    setup: setup,
     drawSort: drawSort
   }
 

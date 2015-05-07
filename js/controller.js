@@ -22,7 +22,6 @@ var Controller = (function () {
   }
 
   var init = function () {
-    SortVisualizer.setup();
     sort();
     $("#start-random").click(function () {
       arrangement = "random";
@@ -38,7 +37,7 @@ var Controller = (function () {
     });
     $("#deck-size").submit(function () {
       newDeckSize = parseInt($("#deck-size input").val());
-      if (!isNaN(newDeckSize) && newDeckSize != deckSize) {
+      if (!isNaN(newDeckSize)) {
         deckSize = newDeckSize;
         sort();
       }
