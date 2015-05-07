@@ -1,15 +1,16 @@
 var SortVisualizer = (function () {
 
   var m_svg = null
-
-  var m_width = 1000;
-  var m_height = 600;
+  var m_width = null;
+  var m_height = null;
 
   var setup = function () {
+    m_width = $("#card-sort").width();
+    m_height = $(window).height() - 200;
     m_svg = d3.select("div#card-sort")
       .append("svg")
       .attr("width", m_width)
-      .attr("height", m_height);
+      .attr("height", m_height)
   };
 
   var lineFunction = d3.svg.line()
@@ -35,7 +36,7 @@ var SortVisualizer = (function () {
 
     for (var elt = 0; elt < elts; elt++) {
       var coords = coordsForPath(paths[elt], xSpacing, ySpacing);
-      drawPolygon(coords, d3.hsl(360 * elt / elts, 0.7, 0.5));
+      drawPolygon(coords, d3.hsl(360 * elt / elts, 0.6, 0.6));
     }
   };
 
