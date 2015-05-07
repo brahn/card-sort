@@ -24,7 +24,6 @@ class CardSort
     (0..(deck_size - 1)).sort_by{rand()}
   end
 
-
   def sort_by_bit(list, bit_num)
     pile0 = []
     pile1 = []
