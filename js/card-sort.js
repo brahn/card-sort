@@ -33,7 +33,6 @@ var CardSort = (function () {
 
   var sort = function () {
     var numSteps = Math.ceil(Math.log(m_deckSize) / Math.log(2));
-    debugger;
     for (var i = 0; i < numSteps; i++) {
       console.log(i);
       doStep(i);
