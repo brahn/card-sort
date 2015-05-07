@@ -34,6 +34,8 @@ var SortVisualizer = (function () {
     var xSpacing = m_width / (steps - 1);
     var ySpacing = m_height / (elts - 1);
 
+    m_svg.selectAll("*").remove();
+
     for (var elt = 0; elt < elts; elt++) {
       var coords = coordsForPath(paths[elt], xSpacing, ySpacing);
       drawPolygon(coords, d3.hsl(360 * elt / elts, 0.6, 0.6));

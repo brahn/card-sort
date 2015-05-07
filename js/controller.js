@@ -24,6 +24,26 @@ var Controller = (function () {
   var init = function () {
     SortVisualizer.setup();
     sort();
+    $("#start-random").click(function () {
+      arrangement = "random";
+      $("start-random").addClass("active")
+      $("start-reversed").removeClass("active")
+      sort();
+    });
+    $("#start-reversed").click(function () {
+      arrangement = "reversed";
+      $("start-reversed").addClass("active")
+      $("start-random").removeClass("active")
+      sort();
+    });
+    $("#deck-size").submit(function () {
+      newDeckSize = parseInt($("#deck-size input").val());
+      if (!isNaN(newDeckSize) && newDeckSize != deckSize) {
+        deckSize = newDeckSize;
+        sort();
+      }
+      return false;
+    });
   }
 
   return {
