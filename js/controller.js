@@ -14,7 +14,7 @@ var Controller = (function () {
   };
 
   var sort = function () {
-    if (arrangement == 'reverse') {
+    if (arrangement == 'reversed') {
       sortReverse(deckSize);
     } else {
       sortRandom(deckSize);
